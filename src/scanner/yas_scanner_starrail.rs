@@ -8,7 +8,7 @@ use std::time::SystemTime;
 
 use clap::ArgMatches;
 use enigo::*;
-use image::{GenericImageView, RgbImage};
+use screenshots::image::{self, GenericImageView, RgbImage};
 use log::{error, info, warn};
 use tract_onnx::prelude::tract_itertools::Itertools;
 

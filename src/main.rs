@@ -16,7 +16,8 @@ use yas_scanner::scanner::yas_scanner::{YasScanner, YasScannerConfig};
 
 use clap::{App, Arg};
 use env_logger::Builder;
-use image::imageops::grayscale;
+use screenshots::image;
+use screenshots::image::imageops::grayscale;
 
 use log::{info, warn, LevelFilter};
 
@@ -175,41 +176,11 @@ fn main() {
 
     #[cfg(all(target_os = "linux"))]
     {
-        let window_id = unsafe {
-            String::from_utf8_unchecked(
-                std::process::Command::new("sh")
-                    .arg("-c")
-                    .arg(r#" xwininfo|grep "Window id"|cut -d " " -f 4 "#)
-                    .output()
-                    .unwrap()
-                    .stdout,
-            )
-        };
-        let window_id = window_id.trim_end_matches("\n");
-
-        let position_size = unsafe {
-            String::from_utf8_unchecked(
-                std::process::Command::new("sh")
-                    .arg("-c")
-                    .arg(&format!(r#" xwininfo -id {window_id}|cut -f 2 -d :|tr -cd "0-9\n"|grep -v "^$"|sed -n "1,2p;5,6p" "#))
-                    .output()
-                    .unwrap()
-                    .stdout,
-            )
-        };
-
-        let mut info = position_size.split("\n");
-
-        let left = info.next().unwrap().parse().unwrap();
-        let top = info.next().unwrap().parse().unwrap();
-        let width = info.next().unwrap().parse().unwrap();
-        let height = info.next().unwrap().parse().unwrap();
-
         rect = PixelRect {
-            left,
-            top,
-            width,
-            height,
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
         };
         is_cloud = false; // todo: detect cloud genshin by title
         ui = UI::Desktop;

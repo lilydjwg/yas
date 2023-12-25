@@ -1,5 +1,5 @@
-use image::imageops::{overlay, resize};
-use image::{GenericImageView, GrayImage, ImageBuffer, Luma, RgbImage};
+use screenshots::image::imageops::{overlay, resize};
+use screenshots::image::{self, GenericImageView, GrayImage, ImageBuffer, Luma, RgbImage};
 
 use crate::common::RawImage;
 pub type GrayImageFloat = ImageBuffer<Luma<f32>, Vec<f32>>;

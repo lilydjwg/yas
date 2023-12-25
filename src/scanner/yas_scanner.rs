@@ -8,7 +8,7 @@ use std::time::SystemTime;
 
 use clap::ArgMatches;
 use enigo::*;
-use image::{GenericImageView, RgbImage};
+use screenshots::image::{self, GenericImageView, RgbImage};
 use log::{error, info, warn};
 use tract_onnx::prelude::tract_itertools::Itertools;
 
@@ -388,7 +388,7 @@ impl YasScanner {
         let top = info.top
             + (info.top_margin + (info.art_height + info.art_gap_y) * row + info.art_height / 4)
                 as i32;
-        self.enigo.mouse_move_to(left as i32, top as i32);
+        self.enigo.mouse_move_to(left * 2 as i32, top * 2 as i32);
         #[cfg(target_os = "macos")]
         utils::sleep(20);
     }

@@ -10,8 +10,10 @@ license = "GPL-2.0-or-later"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[patch.crates-io]
+libwayshot = { path = "../wayshot/libwayshot" }
+
 [dependencies]
-image = "0.23.14"
 enigo = "0.0.14"
 tract-onnx = "0.15.3"
 serde_json = "1.0.68"
@@ -28,8 +30,7 @@ rand = "0.8.5"
 reqwest = { version = "0.11", features = ["blocking", "json"] }
 semver = "1.0.7"
 lazy_static = "1.4.0"
-screenshots = "0.5.3"
-png = "0.17.8"
+screenshots = { version = "*", path = "../screenshots-rs" }
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = [
@@ -50,13 +51,11 @@ winres = "0.1"
 
 [profile.release]
 lto = true
-panic = "abort"
-strip = true
 
 [[bin]]
 name = "yas_scanner"
 path = "src/main.rs"
 
-[[bin]]
-name = "yas_scanner_starrail"
-path = "src/main_starrail.rs"
+# [[bin]]
+# name = "yas_scanner_starrail"
+# path = "src/main_starrail.rs"
