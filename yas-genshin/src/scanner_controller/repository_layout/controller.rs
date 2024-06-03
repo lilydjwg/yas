@@ -263,7 +263,7 @@ impl GenshinRepositoryScanController {
         let left = origin.x + margin.x + (gap.width + size.width) * (col as f64) + size.width / 2.0;
         let top = origin.y + margin.y + (gap.height + size.height) * (row as f64) + size.height / 2.0;
 
-        self.system_control.mouse_move_to(left as i32, top as i32).unwrap();
+        self.system_control.mouse_move_to(left as i32 * 2, top as i32 * 2).unwrap();
 
         #[cfg(target_os = "macos")]
         utils::sleep(20);
