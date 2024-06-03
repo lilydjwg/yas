@@ -1,4 +1,4 @@
-use yas::utils::press_any_key_to_continue;
+use yas_genshin::yas::utils::press_any_key_to_continue;
 use yas_genshin::application::ArtifactScannerApplication;
 use log::error;
 
